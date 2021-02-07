@@ -1,0 +1,22 @@
+export const HEADERS = [
+    "datum",
+    "totaal",
+    "cheque_delhaize",
+    "tegoebon",
+    "publiciteitsbon",
+    "leeggoedbon",
+    "bancontact",
+    "op_krediet",
+    "andere",
+    "amex",
+    "visa",
+    "mastercard",
+    "maestro",
+    "visa_electron",
+    "payfair",
+    "sodexo",
+    "accordenred",
+    "som_totaal",
+    "verschil",
+  ];
+  
