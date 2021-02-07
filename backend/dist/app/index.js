@@ -30,7 +30,7 @@ app.use("/api/*", (req, res, next) => {
     next(err);
 });
 app.get("*", (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, "../frontend/public/index.html"));
+    res.sendFile(path_1.default.join(__dirname, "../../../frontend/public/index.html"));
 });
 // Error handler
 app.use((err, _req, res) => {
