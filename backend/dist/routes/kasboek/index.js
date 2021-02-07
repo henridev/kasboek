@@ -7,10 +7,12 @@ const express_1 = require("express");
 const handler_1 = __importDefault(require("./handler"));
 const router = express_1.Router();
 router.get("*", async (req, res, next) => {
-    const data = await handler_1.default.findAll();
+    console.log('req', req);
+    const data = await handler_1.default.findAll(req.query.start, req.query.end);
     return res.json(data);
 });
 router.post("*", async (req, res, next) => {
+    console.log("post");
     await handler_1.default.insertEntries(req.body);
     return res.send("success");
 });

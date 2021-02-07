@@ -7,11 +7,13 @@ class KasboekRepository {
     constructor() {
         this.connection = database_1.getConnection();
     }
-    async findAll() {
+    async findAll(start, end) {
         try {
             return this.connection
                 .select("*")
-                .from(config_1.T.KASBOEK);
+                .from(config_1.T.KASBOEK)
+                .where('datum', '>=', start)
+                .where('datum', '<=', end);
         }
         catch (error) {
             throw new Error("failed getting rows");

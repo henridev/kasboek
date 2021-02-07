@@ -1,8 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.T = exports.Database = void 0;
+const dotenv_1 = require("dotenv");
+const path_1 = __importDefault(require("path"));
+dotenv_1.config({ path: path_1.default.join(__dirname, "../../.env") });
 var Database;
 (function (Database) {
+    Database.uri = process.env.pg_uri;
     Database.client = "pg";
     Database.schema = "public";
     Database.database = process.env.pg_db;
