@@ -1,29 +1,22 @@
 <script lang="ts">
-  import convertUploadedCsvToRow  from "../service/filereader";
-  export let files: File[];
-  const handleFileChange = (e: Event) => {
-      files = [...(<HTMLInputElement>e.target).files]
-  };
-//   const handleProcessing = async (files: File[]) => {
-//     for (const file of files) {
-//       if (file.name.toLowerCase().includes("xls")) {
-//        await convertUploadedCsvToRow(file)
-//       }
-//     }
-//   }
+  import { files } from "../data/store";
+  import type { renderedFile } from "../models/RenderedFile";
 
-//   $: if(files && files.length > 0){
-//       handleProcessing(files)
-//   }
-  
+  const handleFileChange = (e: Event) => {
+    const uploadedFiles = (<HTMLInputElement>e.target).files;
+    let newFiles: renderedFile[] = [];
+    for (const file of uploadedFiles) {
+      newFiles.push({ file, isParsed: false });
+    }
+    files.update((prevFiles) => [...prevFiles, ...newFiles]);
+  };
 </script>
 
-
+<input on:change={handleFileChange} type="file" id="uploader" multiple />
 
 <style>
-    /* your styles go here */
+  input {
+    background-color: #7b51b3;
+    color: white;
+  }
 </style>
-
-<div>
-    <input on:change={handleFileChange} type="file" id="uploader" />
-</div>

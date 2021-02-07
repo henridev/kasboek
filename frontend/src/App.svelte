@@ -1,32 +1,31 @@
 <script lang="ts">
+  import Listing from "./components/Listing.svelte";
   import ParseButton from "./components/ParseButton.svelte";
+  import Table from "./components/Table.svelte";
   import Uploader from "./components/Uploader.svelte";
-
-  export let name: string;
-
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <Uploader/>
-  <ParseButton/>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
+  <h1>kasboek verwerker</h1>
+  <ParseButton />
+  <Uploader />
+  <Listing />
+  <Table />
 </main>
 
 <style>
   main {
     text-align: center;
-    padding: 1em;
-    max-width: 240px;
+    font-family: "Ubuntu", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
   }
 
   h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
+    color: #7b51b3;
     font-size: 4em;
     font-weight: 100;
   }

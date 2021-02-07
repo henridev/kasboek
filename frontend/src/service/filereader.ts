@@ -1,20 +1,21 @@
-import { read } from "xlsx/types";
+import { read } from "xlsx";
 import { CardsEnum, newCards } from "../models/Cards";
 import {
   ChequeEnum,
   ChequeSubCategorieEnum,
   newCheque,
   Row,
-  newSales, 
-  SalesEnum
+  newSales,
+  SalesEnum,
 } from "../models";
 import { genKey } from "../utils";
-const verkoopCijfers: [string, number, number] = ["C", 3, 29];
-const verkoopCijfersTitelColumn: string = "A";
+
 const cardRow: number = 29;
 
 const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
   const temporaryFileReader = new FileReader();
+  const verkoopCijfers: [string, number, number] = ["C", 3, 29];
+  const verkoopCijfersTitelColumn: string = "A";
 
   return new Promise((resolve, reject) => {
     temporaryFileReader.onerror = () => {
@@ -22,7 +23,7 @@ const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
       reject(new DOMException("Probleem bij verwerking kasboek"));
     };
 
-    (temporaryFileReader.onload = (ev: ProgressEvent<FileReader>): any => {
+    temporaryFileReader.onload = (ev: ProgressEvent<FileReader>): any => {
       const {
         target: { result },
       } = ev;
@@ -31,13 +32,13 @@ const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
       const sheet = workbook.Sheets.Sheet1;
 
       const sales = newSales();
-      const datum: string = sheet.A1.v.match(/\d{2}\/\d{2}\/\d{4}/)[0];
+      const datum: string = sheet?.A1?.v.match(/\d{2}\/\d{2}\/\d{4}/)[0];
 
       while (verkoopCijfers[1] < verkoopCijfers[2]) {
         const keyForVal = `${verkoopCijfers[0]}${verkoopCijfers[1]}`;
         const keyForTitel = `${verkoopCijfersTitelColumn}${verkoopCijfers[1]}`;
-        const val = sheet[keyForVal].v;
-        const titel = sheet[keyForTitel].v;
+        const val = sheet[keyForVal]?.v;
+        const titel = sheet[keyForTitel]?.v;
         verkoopCijfers[1]++;
         const key = genKey(titel);
         if (key in SalesEnum) {
@@ -47,7 +48,7 @@ const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
 
       const cells = Object.entries(sheet)
         .filter(([key]) => key.includes(cardRow.toString()))
-        .map(([, val]) => (typeof val.v === "string" ? genKey(val.v) : val.v));
+        .map(([, val]) => (typeof val?.v === "string" ? genKey(val?.v) : val?.v));
 
       const cards = newCards();
       const cheques = newCheque();
@@ -71,8 +72,9 @@ const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
       console.log("cards", cards);
 
       resolve(new Row(datum, sales, cards, cheques));
-    }),
-      temporaryFileReader.readAsArrayBuffer(inputFile);
+    };
+
+    temporaryFileReader.readAsArrayBuffer(inputFile);
   });
 };
 

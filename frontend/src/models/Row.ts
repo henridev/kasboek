@@ -29,8 +29,7 @@ export class Row {
     this.omzet = sales.totaal;
     this.cheque_delhaize = sales.cheque_delhaize;
     this.tegoebon = sales.tegoedbon_crea;
-    this.publiciteitsbon =
-      sales.publiciteitsbon + sales.bon_pub_dll + sales.bon_pub_lev;
+    this.publiciteitsbon =Number((sales.publiciteitsbon + sales.bon_pub_dll + sales.bon_pub_lev).toFixed(2))
     this.leeggoedbon = sales.leeggoedbon;
     this.bancontact = sales.bancontact;
     this.op_krediet = sales.op_krediet;
