@@ -11,11 +11,13 @@ export class KasboekRepository {
     this.connection = getConnection();
   }
 
-  async findAll(): Promise<KasboekEntry[]> {
+  async findAll(start:string, end:string): Promise<KasboekEntry[]> {
     try {
       return this.connection
         .select("*")
         .from(T.KASBOEK)
+        .where('datum', '>=', start)
+        .where('datum', '<=', end)
     } catch (error) {
       throw new Error("failed getting rows");
     }

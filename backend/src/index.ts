@@ -1,5 +1,13 @@
-import app from './bin'
+import app from './app'
 import {createServer} from 'http'
+import {config} from 'dotenv'
+import path from "path";
+
+config({ path: path.join(__dirname, "../.env") });
+
+// console.log('process.env', process.env)
+
+
 const server = createServer(app);
 
 server.on("error", (error: any) => {

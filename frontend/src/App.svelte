@@ -1,14 +1,31 @@
 <script lang="ts">
+  import DatePicker from "./components/DatePicker.svelte";
+import GetButton from "./components/GetButton.svelte";
   import Listing from "./components/Listing.svelte";
   import ParseButton from "./components/ParseButton.svelte";
   import Table from "./components/Table.svelte";
+  import UploadButton from "./components/UploadButton.svelte";
   import Uploader from "./components/Uploader.svelte";
 </script>
 
 <main>
   <h1>kasboek verwerker</h1>
-  <ParseButton />
-  <Uploader />
+  <div>
+    <h3>kasboek downloader</h3>
+    <div>
+      <div>
+        <DatePicker title="begin dag" />
+        <DatePicker title="eind dag" />
+      </div>
+      <GetButton />
+    </div>
+  </div>
+  <div>
+    <h3>kasboek uploader</h3>
+    <Uploader />
+    <ParseButton />
+    <UploadButton />
+  </div>
   <Listing />
   <Table />
 </main>

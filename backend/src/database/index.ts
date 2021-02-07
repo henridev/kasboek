@@ -1,10 +1,17 @@
+
 import Knex from 'knex';
 import {Database} from '../config/index'
 
+
+
+
 export function getConnection() {
+    console.log('Database', Database)
     const knex = Knex({
       client: Database.client,
       connection: {
+        uri: Database.uri,
+        ssl: true,
         user: Database.user,
         password: Database.password,
         host: Database.host,
@@ -19,4 +26,4 @@ export function getConnection() {
       acquireConnectionTimeout: 2000,
     });
     return knex;
-  }
+}

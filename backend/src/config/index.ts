@@ -1,4 +1,10 @@
+import { config } from 'dotenv';
+import path from "path";
+
+config({ path: path.join(__dirname, "../../.env") })
+
 export namespace Database {
+  export const uri = process.env.pg_uri;
   export const client = "pg";
   export const schema = "public";
   export const database = process.env.pg_db;

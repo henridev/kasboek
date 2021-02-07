@@ -1,7 +1,7 @@
 import { Request as Req, Response as Res } from "express";
 
 import path from "path";
-import {config} from 'dotenv'
+
 
 import cors from "cors";
 import express from "express";
@@ -11,9 +11,13 @@ import logger from 'morgan'
 
 import kasboekHandler from '../routes/kasboek'
 
-config({ path: path.join(__dirname, ".env") });
 
 const app = express();
+
+app.use((req,res,nxt)=>{
+  console.log('request')
+  nxt()
+})
 
 app.use(
   cors({
@@ -29,7 +33,7 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 
 
-app.use(express.static(path.join(__dirname, "../frontend/public")));
+app.use(express.static(path.join(__dirname, "../../../frontend/public")));
 
 
 app.use("/api/kasboek", kasboekHandler);

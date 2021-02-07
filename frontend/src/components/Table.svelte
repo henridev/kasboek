@@ -2,16 +2,48 @@
   import { onDestroy } from "svelte";
   import { rows } from "../data/store";
   import type { Row } from "../models";
+  import { utils, write } from "xlsx";
+  import api from "../service/api";
+  import {saveAs} from 'file-saver'
+
+  let start: string;
+  let end: string;
+
   let rendered_rows: Row[];
+  let tableElement;
 
   const unsubscribe = rows.subscribe((new_rows) => {
     rendered_rows = new_rows;
   });
 
+
+
+  const handleDownload = async () => {
+    const data = await api.getKasboek(start, end);
+    rows.set(data);
+    const wb = utils.book_new();
+    const ws = utils.json_to_sheet(data);
+    wb.SheetNames.push("kasboek");
+    wb.Sheets["kasboek"] = ws;
+    const wbout = write(wb, {
+      bookType: "xlsx",
+      bookSST: true,
+      type: "binary",
+    });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+      return buf;
+    }
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+  };
+
   onDestroy(unsubscribe);
 </script>
 
-<table class="styled-table">
+<button on:click={handleDownload}>download kasboek</button>
+<table class="styled-table" bind:this={tableElement}>
   <thead>
     <tr>
       <th>datum</th>
@@ -40,7 +72,7 @@
     {#each rendered_rows as row}
       <tr>
         <td>
-          {row.datum}
+          {row.datum.substring(0,10)}
         </td>
         <td>
           {row.omzet}
@@ -134,9 +166,9 @@
   .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
   }
-  .styled-table tbody tr:hover{
+  .styled-table tbody tr:hover {
     font-weight: bold;
     color: #fff;
     background-color: #00987a8c;
-}
+  }
 </style>

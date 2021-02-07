@@ -4,11 +4,14 @@ import handler from './handler'
 const router = Router();
 
 router.get("*", async (req: Req, res: Res, next: NextFunction) => {
-    const data = await handler.findAll()
+    console.log('req', req)
+
+    const data = await handler.findAll(req.query.start as string, req.query.end as string)
     return res.json(data);
 });
 
 router.post("*", async (req: Req, res: Res, next: NextFunction) => {
+    console.log("post")
     await handler.insertEntries(req.body)
     return res.send("success");
 });

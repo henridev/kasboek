@@ -7,7 +7,7 @@ dotenv.config();
 export async function up(knex: Knex): Promise<any> {
   return knex.schema.withSchema("public").createTable(`${T.KASBOEK}`, (table) => {
     table.increments("id").primary();
-    table.text("datum");
+    table.timestamp("datum");
     table.float("omzet")
     table.float("cheque_delhaize")
     table.float("tegoebon")

@@ -1,0 +1,26 @@
+{
+  "name": "kasboek-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "xlsx": "^0.16.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "preinstall": "echo --- preinstall --- && cd backend && npm install && npm run build && cd ../frontend && npm install && npm run build && cd ..",
+    "start": "echo --- start --- && cd backend && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henridev/kasboek-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henridev/kasboek-app/issues"
+  },
+  "homepage": "https://github.com/henridev/kasboek-app#readme"
+}

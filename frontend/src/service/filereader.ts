@@ -8,7 +8,7 @@ import {
   newSales,
   SalesEnum,
 } from "../models";
-import { genKey } from "../utils";
+import { convertToIsoStringTwo, genKey } from "../utils";
 
 const cardRow: number = 29;
 
@@ -32,7 +32,11 @@ const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
       const sheet = workbook.Sheets.Sheet1;
 
       const sales = newSales();
-      const datum: string = sheet?.A1?.v.match(/\d{2}\/\d{2}\/\d{4}/)[0];
+      let datum: string = sheet?.A1?.v.match(/\d{2}\/\d{2}\/\d{4}/)[0];
+      if(datum){
+        datum =  convertToIsoStringTwo(datum)
+      }
+      
 
       while (verkoopCijfers[1] < verkoopCijfers[2]) {
         const keyForVal = `${verkoopCijfers[0]}${verkoopCijfers[1]}`;
