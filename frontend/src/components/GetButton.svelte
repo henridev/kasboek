@@ -1,9 +1,8 @@
 <script lang="ts">
-import { onDestroy } from "svelte";
+  import { onDestroy } from "svelte";
 
   import { rows, dates } from "../data/store";
   import api from "../service/api";
-
 
   let start: string;
   let end: string;
@@ -18,7 +17,7 @@ import { onDestroy } from "svelte";
     rows.set(data);
   };
 
-  onDestroy( unsubscribe);
+  onDestroy(unsubscribe);
 </script>
 
 <button on:click={handleGet}>vraag kasboek op</button>
