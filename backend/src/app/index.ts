@@ -46,7 +46,7 @@ app.use("/api/*", (req, res, next) => {
 
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/public/index.html"));
+  res.sendFile(path.join(__dirname, "../../../frontend/public/index.html"));
 });
 
 // Error handler
