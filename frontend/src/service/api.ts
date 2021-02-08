@@ -26,8 +26,7 @@ const logger = (response) => {
 function axiosFactory(servicename: ENDPOINTSMAP) {
   const urlpoint = servicename;
   const service = axios.create({
-    // http://${window.location.hostname}:5000${
-    baseURL: urlpoint,
+    baseURL: `http://${window.location.hostname}:5000${urlpoint}`,
     withCredentials: true,
   });
 

@@ -10,10 +10,6 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const kasboek_1 = __importDefault(require("../routes/kasboek"));
 const app = express_1.default();
-app.use((req, res, nxt) => {
-    console.log('request');
-    nxt();
-});
 app.use(cors_1.default({
     origin: (origin, cb) => {
         cb(null, process.env.NODE_ENV !== "production");

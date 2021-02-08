@@ -6,7 +6,6 @@ import {Database} from '../config/index'
 
 
 export function getConnection() {
-    console.log('Database', Database)
     const knex = Knex({
       client: Database.client,
       connection: {

@@ -5,7 +5,7 @@ import path from "path";
 
 config({ path: path.join(__dirname, "../.env") });
 
-// console.log('process.env', process.env)
+
 
 
 const server = createServer(app);

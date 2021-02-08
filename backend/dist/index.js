@@ -8,7 +8,6 @@ const http_1 = require("http");
 const dotenv_1 = require("dotenv");
 const path_1 = __importDefault(require("path"));
 dotenv_1.config({ path: path_1.default.join(__dirname, "../.env") });
-// console.log('process.env', process.env)
 const server = http_1.createServer(app_1.default);
 server.on("error", (error) => {
     if (error.syscall !== "listen") {

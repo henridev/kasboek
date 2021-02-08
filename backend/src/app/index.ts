@@ -14,10 +14,6 @@ import kasboekHandler from '../routes/kasboek'
 
 const app = express();
 
-app.use((req,res,nxt)=>{
-  console.log('request')
-  nxt()
-})
 
 app.use(
   cors({

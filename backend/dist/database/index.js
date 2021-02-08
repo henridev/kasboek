@@ -7,7 +7,6 @@ exports.getConnection = void 0;
 const knex_1 = __importDefault(require("knex"));
 const index_1 = require("../config/index");
 function getConnection() {
-    console.log('Database', index_1.Database);
     const knex = knex_1.default({
         client: index_1.Database.client,
         connection: {
