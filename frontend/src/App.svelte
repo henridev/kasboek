@@ -1,6 +1,6 @@
 <script lang="ts">
   import DatePicker from "./components/DatePicker.svelte";
-import GetButton from "./components/GetButton.svelte";
+  import GetButton from "./components/GetButton.svelte";
   import Listing from "./components/Listing.svelte";
   import ParseButton from "./components/ParseButton.svelte";
   import Table from "./components/Table.svelte";

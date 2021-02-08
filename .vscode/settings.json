@@ -1,5 +1,6 @@
 {
   "window.zoomLevel": 0.77,
   "editor.mouseWheelZoom": true,
-  "html.format.enable": true
+  "html.format.enable": true,
+  "editor.fontFamily": "Fira Code",
 }

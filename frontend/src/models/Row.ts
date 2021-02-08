@@ -38,7 +38,8 @@ export class Row {
       sales.tegoedbon +
       sales.ecocheques +
       sales.terugbet_lotto +
-      sales.maaltijdcheque;
+      sales.maaltijdcheque + 
+      sales.superplus;
     this.amex = cards.amex;
     this.visa = cards.visa;
     this.mastercard = cards.mastercard;

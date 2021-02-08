@@ -22,14 +22,12 @@ const convertUploadedCsvToRow = (inputFile): Promise<Row> => {
       const workbook = read(data, { type: "array" });
       const sheet = workbook.Sheets.Sheet1;
       let datum: string
+      // console.log('sheet', sheet)
      
       datum = sheet?.A1?.v.match(/\d{2}\/\d{2}\/\d{4}/)[0];
       if(datum){
         datum =  convertToIsoStringTwo(datum)
         const [sales, cards, cheques] = createRowForDataOnlyXLS(sheet)
-        console.log("sales", sales);
-        console.log("cheques", cheques);
-        console.log("cards", cards);
         resolve(new Row(datum, sales, cards, cheques));
       } else {
         datum = convertToIsoStringTwo(sheet?.C5?.v.match(/\d{2}\/\d{2}\/\d{4}/)[0])
